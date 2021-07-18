@@ -32,20 +32,19 @@ Finally for the database, I decided to use a PostgressSQL Database for the Auth 
     <li>Use an MQTT service to asyncronous comunicate the system in some operations like delete a resource</li>
 </ol>
 
-## Implementation [Auth Service] (12:36 PM of 07/16/2021 (COT))
+## Implementation [Auth Service] 
 <ol>
     <li>Initialized Typescript for node server</li>
     <li>Database and Docker</li>
     <li>Auth endpoints: /register, /login and /logout</li>
     <li>User endpoints: /me</li>
 </ol>
-End of this module: (09:26 PM of 07/16/2021 (COT))<br>
+Start of this module: (12:36 PM of 07/16/2021 (COT))<br>
+End of this module: (09:26 PM of 07/17/2021 (COT))<br>
 <strong>Some feedback:</strong> I got some troubles with sequelize and typescript (Both at the same time, but solved)
 
-## Implementation [Other Services] (12:36 PM of 07/16/2021 (COT))
+## Implementation [Resource Services]
 <ol>
-    <li>Initialized Typescript for node server</li>
-    <li>Database and Docker</li>
-    <li>Auth endpoints: /register, /login and /logout</li>
-    <li>User endpoints: /me</li>
+    <li></li>
 </ol>
+Start of this module: (9:00 AM of 07/19/2021 (COT))<br>
