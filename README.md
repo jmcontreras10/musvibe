@@ -45,6 +45,6 @@ End of this module: (09:26 PM of 07/17/2021 (COT))<br>
 
 ## Implementation [Resource Services]
 <ol>
-    <li></li>
+    <li>Initialized Typescript for node server</li>
 </ol>
 Start of this module: (9:00 AM of 07/19/2021 (COT))<br>

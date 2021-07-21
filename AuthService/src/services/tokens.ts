@@ -15,7 +15,9 @@ export const Authenticator = async (req: Request, res: Response, next: NextFunct
     if(!token) return res.status(401).json("Error: Access denied");
 
     try {
-        const jwtPayload: IJWTPayload = jwt.verify(token,  process.env.JWT_SECRET || 'default_token') as IJWTPayload;    const auth = await Auth.findOne({ where: { email: jwtPayload.email } });
+        const jwtPayload: IJWTPayload = jwt.verify(token,  process.env.JWT_SECRET || 'default_token') as IJWTPayload;    
+        const auth = await Auth.findOne({ where: { email: jwtPayload.email } });
+        
         if(!auth) return res.status(401).clearCookie('musvibeToken').json("Error: Access denied!");
         const user = await User.findOne({ where: { email: jwtPayload.email } });
 

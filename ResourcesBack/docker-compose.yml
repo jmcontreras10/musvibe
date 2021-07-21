@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=musvibe
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    ports:
+      - 27017:27017
+    restart: unless-stopped
