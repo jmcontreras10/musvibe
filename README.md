@@ -32,16 +32,67 @@ After the idea of the app I defined 4 entities:<br>
     <li>User</li>
     <li>Playlist</li>
     <li>Song</li>
+    <li>Feed</li>
 </ul>
-<ul>
-    <li>Auth microservice: Manages <code class="tomato">User</code> accounts and the <code  class="tomato">Auth</code> token management (using JWT). Given the low complexity of this, I decided to use a simple MVC.</li>
-    <li>Resources back: Manages the <code  class="tomato">Playlists</code> and <code  class="tomato">Songs</code> API going through for the auth service if needed. Given the possible scalability needs of this, I decided to use DDD based clean Architecture: Hexagal Architecture. But given the small project and the available time, I decided to use modular monorepo to separate services as in functional Microservices but always maintaining it on the same repo to decrease the complexity of managing a lot of Network requests.</li>
-</ul>
+<br/>
+    Auth microservice: Manages <code class="tomato">User</code> accounts and the <code  class="tomato">Auth</code> token management (using JWT). Given the low complexity of this, I decided to use a simple MVC.
+    Resources back: Manages the <code  class="tomato">Playlists</code>, <code  class="tomato">Songs</code>, and  <code  class="tomato">Feed</code> API going through for the auth service if needed. Given the possible scalability needs of this, I decided to use DDD based clean Architecture: Hexagal Architecture. 
+
+### Some advantages of using monorepo
+<ol>
+    <li>The power of having all in the same place allows a better and fastern communication between the modules</li>
+    <li>The modularity of the microservices on the individual design allows you to break down them when you need it</li>
+    <li>Scalability</li>
+    <li>Elegant maintainability</li>
+</ol>
+
 For a better understanding you can watch <a href="https://github.com/jmcontreras10/musvibe/blob/main/arch.png?raw=true">this</a> diagram.<br>
 Finally for the database, I decided to use a <code  class="tomato">PostgressSQL</code> Database for the Auth service, given the structure of the information, and <code  class="tomato">MongoDB</code> for the resources back given the amount of data and low transactionality that we have there. In this case, I'm using <code  class="tomato">Docker</code> to easy deploy the resources.<br><br>
 
 ## **Endpoints**
-Currently you're able to find each endpoint definition and usage on this
+With the endpoints created that you could find in the postman files (Auth and services), you will be able to:<br/>
+### Manage your user account and authentication
+<ol>
+    <li>[POST] /login</li>
+    <li>[POST] /logout</li>
+    <li>[POST] /register</li>
+    <li>[GET]  /me</li>
+</ol>
+
+### Fetch some cool songs we have for you with youtube links
+<ol>
+    <li>[GET]  /songs</li>
+    <li>[GET]  /songs/:id</li>
+</ol>
+
+### Add some feedback to that songs (like for now)
+<ol>
+    <li>[POST] /feeds/:id</li>
+    <li>[GET]  /feeds/</li>
+</ol>
+
+### Create your own playlist based on out songs list
+<ol>
+    <li>[GET]     /playlists/:playlist_id</li>
+    <li>[GET]     /playlists/</li>
+    <li>[POST]    /playlists/</li>
+    <li>[PUT]     /playlists/:playlist_id</li>
+    <li>[DELETE]  /playlists/:playlist_id</li>
+    <li>[DELETE]  /playlists/</li>
+</ol>
+
+### Of course you can get, add and remove songs from your playlists
+<ol>
+    <li>[GET]     /playlists/:playlist_id/songs/</li>
+    <li>[POST]    /playlists/:playlist_id/songs/:song_id</li>
+    <li>[DELETE]  /playlists/:playlist_id/songs/:song_id</li>
+</ol>
+
+### Notes
+The get listing methods allows pagination using the follow query params (?key=vaue):. 'page' to select the page, and 'pageSize' to select the page size.<br/>
+Soon, I'll be publishing a complete Swagger API Documentation for tis API.<br/>
+The implementationf of this backend was though with clean code principle in mind, does it means you will not find commentaries but very good names that ilustrate the why of: the variables, functions, interfaces nd other elements
+
 ## **Suggestions and Ideas for the system**
 <ol>
     <li>Use a MQTT service to asyncronous comunicate the system in some operations like delete a resource.</li>
@@ -54,8 +105,6 @@ Currently you're able to find each endpoint definition and usage on this
 This project was started at 10:43AM of 07/16/2021 (COT).<br>
 This applicaion is a music directory that stores songs, albums, and artists.<br>
 In addition you can create an account and private playlists based on the available songs.
-
-
 
 ## Implementation [Auth Service] 
 <ol>
@@ -75,11 +124,18 @@ End of this module: (09:26 PM of 07/17/2021 (COT))<br>
 Start of this module: (9:00 AM of 07/19/2021 (COT))<br>
 End of this module: (8:00 AM of 07/21/2021 (COT))<br>
 
-## Docs
+## Implementation [More Services & Bugs solving]
 <ol>
     <li>Initialized Typescript for node server</li>
 </ol>
 Start of this module: (9:00 AM of 07/21/2021 (COT))<br>
+End of this module: (3:30 PM of 07/21/2021 (COT))<br>
+## Docs
+<ol>
+    <li>Initialized Typescript for node server</li>
+</ol>
+Start of this module: (8:10 AM of 07/21/2021 (COT))<br>
+End of this module: (3:43 AM of 07/21/2021 (COT))<br>
 
 <style>
     code{

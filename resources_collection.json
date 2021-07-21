@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "c5796034-55c9-4021-a07d-9ca505f1f488",
+		"name": "Musvibe-resources",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Song",
+			"item": [
+				{
+					"name": "Songs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/songs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"songs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Songs getOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Playlist",
+			"item": [
+				{
+					"name": "Songs",
+					"item": [
+						{
+							"name": "Get Playlist Songs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/playlists/f737837c-e15e-49f1-b8b5-8e7a402fcb29/songs/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"playlists",
+										"f737837c-e15e-49f1-b8b5-8e7a402fcb29",
+										"songs",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add playlist song",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/playlists/f737837c-e15e-49f1-b8b5-8e7a402fcb29/songs/d2ac16e9-7b03-4d36-9b4e-57c39ab464e6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"playlists",
+										"f737837c-e15e-49f1-b8b5-8e7a402fcb29",
+										"songs",
+										"d2ac16e9-7b03-4d36-9b4e-57c39ab464e6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove song from list",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/playlists/f737837c-e15e-49f1-b8b5-8e7a402fcb29/songs/d2ac16e9-7b03-4d36-9b4e-57c39ab464e6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"playlists",
+										"f737837c-e15e-49f1-b8b5-8e7a402fcb29",
+										"songs",
+										"d2ac16e9-7b03-4d36-9b4e-57c39ab464e6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get playlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/playlists/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"playlists",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get playlists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/playlists/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"playlists",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Foster\",\r\n    \"tags\": [\"Favorite\",\"2000s\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/playlists/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"playlists",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Playlist info",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Foster the People\",\r\n    \"tags\": [\r\n        \"Foster the People\",\r\n        \"Favorite\",\r\n        \"2552\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/playlists/702107e3-a149-48bf-b117-e81c3b2e362f/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"playlists",
+								"702107e3-a149-48bf-b117-e81c3b2e362f",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Playlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/playlists/702107e3-a149-48bf-b117-e81c3b2e362f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"playlists",
+								"702107e3-a149-48bf-b117-e81c3b2e362f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all playlists",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/playlists/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"playlists",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feed",
+			"item": [
+				{
+					"name": "Like a Song",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/feeds/d2ac16e9-7b03-4d36-9b4e-57c39ab464e6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"feeds",
+								"d2ac16e9-7b03-4d36-9b4e-57c39ab464e6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get liked songs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/feeds",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"feeds"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
