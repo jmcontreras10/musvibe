@@ -136,20 +136,3 @@ End of this module: (3:30 PM of 07/21/2021 (COT))<br>
 </ol>
 Start of this module: (8:10 AM of 07/21/2021 (COT))<br>
 End of this module: (3:43 AM of 07/21/2021 (COT))<br>
-
-<style>
-    code{
-        padding: 2px 5px;
-        border-radius: 3px;
-    }
-
-    .tomato {
-        background-color:#c0ffc821;
-        color: white;
-    }
-
-    .terminal{   
-        background-color: #000;
-        color: #63de00;
-    }
-</style>
