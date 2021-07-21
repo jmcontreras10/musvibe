@@ -8,9 +8,9 @@ export const Authenticator = async (
   res: Response,
   next: NextFunction
 ) => {
+  const token = req.cookies.musvibeToken;
+  if (!token) return res.status(401).json("Error: Access denied");
   try {
-    const token = req.cookies.musvibeToken;
-    if (!token) return res.status(401).json("Error: Access denied");
     const userResponse = await fetch(`${routes_config.AUTH_URL}/me`, {
       method: "GET",
       headers: {
@@ -22,13 +22,13 @@ export const Authenticator = async (
 
     if (userResponse.status === 401) {
       const response = await userResponse.json();
-      throw new Error(`${response}`);
+      return next(new Error(`${response}`));
     } else {
       const response = await userResponse.json();
       req.user = response;
+      return next();
     }
   } catch (err) {
-    return res.status(401).json(`Error: ${err}`);
+    return next(err);
   }
-  next();
 };

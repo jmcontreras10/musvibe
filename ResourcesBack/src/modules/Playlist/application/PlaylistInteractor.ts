@@ -8,6 +8,7 @@ import { UserId } from "@shared/domain/UserId";
 import { PlaylistMinDTO } from "@shared/application/DTOs/PlaylistMinDTO";
 import { NotFoundError } from "@shared/domain/Errors/NotFoundError";
 import { NotAuthorizedError } from "@shared/domain/Errors/NotAuthorizedError";
+import { validatePagination } from "@shared/application/PaginationPropsValidator";
 
 export default class PlaylistInteractor {
 
@@ -19,9 +20,7 @@ export default class PlaylistInteractor {
     }
 
     async getOnePlaylist(userId: string, id: string): Promise<PlaylistMinDTO> {
-        const playlist: Playlist = await this.playlistRepository.getOne(new PlaylistId(id));
-        console.log(playlist);
-        
+        const playlist: Playlist = await this.playlistRepository.getOne(new PlaylistId(id));        
         
         if(!playlist) throw new NotFoundError('Playlist');
         if(playlist.userId?.toString() !== userId) throw new NotAuthorizedError();
@@ -29,13 +28,9 @@ export default class PlaylistInteractor {
         return playlist.toPrimitives();
     }
 
+
     async getAllUserPlaylists(userId: string, page?: number, pageSize?: number): Promise<PlaylistMinDTO[]> {
-        let paginationProps: PaginationProps | undefined = undefined;
-        if( page && pageSize ) {
-            if (page < 0) throw new InvalidArgumentError('Invalid page!');
-            if (pageSize < 0) throw new InvalidArgumentError('Invalid page size!');
-            paginationProps = {page, pageSize};
-        }
+        const paginationProps: PaginationProps | undefined = validatePagination(page, pageSize);
         const playlists: Playlist[] = await this.playlistRepository.getAllofUser(new UserId(userId), paginationProps);
         return playlists.map(playlist => {
             return playlist.toPrimitives();

@@ -5,7 +5,7 @@ import PaginationProps from "@shared/domain/PaginationProps";
 import Playlist from "../domain/Playlist";
 import PlaylistRepository from "../domain/PlaylistRepository";
 import { SongMinDTO } from "@shared/application/DTOs/SongMinDTO";
-import SongApiRepository from "@playlist/domain/SongApiRepository";
+import SongApiRepository from "@shared/domain/SongApiRepository";
 import { SongId } from "@shared/domain/SongId";
 import { SongDTO } from "@shared/application/DTOs/SongDTO";
 import { NotFoundError } from "@shared/domain/Errors/NotFoundError";
@@ -51,11 +51,14 @@ export default class PlaylistSongInteractor {
     async addPlaylistSong(userId: string, id: string, songId: string): Promise<void> {
 
         const fetchedPlaylist: Playlist = await this.playlistRepository.getOne(new PlaylistId(id));
-        
+
         if(!fetchedPlaylist) throw new NotFoundError('Playlist');
         if(fetchedPlaylist.userId?.toString() !== userId) throw new NotAuthorizedError();
 
-        const song: SongDTO = await this.songApiRepository.getSong(id);
+        const availableSongs = fetchedPlaylist.songs;
+        if(availableSongs?.find(song => song.toString() === songId.toString())) throw new Error('You already have that song in yout playlist!');
+
+        const song: SongDTO = await this.songApiRepository.getSong(songId);
         if(!song) throw new NotFoundError('Song');
 
         await this.playlistRepository.addSong(new PlaylistId(id), new SongId(songId));
@@ -69,8 +72,11 @@ export default class PlaylistSongInteractor {
         
         if(!fetchedPlaylist) throw new NotFoundError('Playlist');
         if(fetchedPlaylist.userId?.toString() !== userId) throw new NotAuthorizedError();
+
+        const availableSongs = fetchedPlaylist.songs;
+        if(!availableSongs?.find(song => song.toString() === songId.toString())) throw new Error('You have not this song on your playlist!');
         
-        const song: SongDTO = await this.songApiRepository.getSong(id);
+        const song: SongDTO = await this.songApiRepository.getSong(songId);
         if(!song) throw new NotFoundError('Song');
 
         await this.playlistRepository.deleteSong(new PlaylistId(id), new SongId(songId));

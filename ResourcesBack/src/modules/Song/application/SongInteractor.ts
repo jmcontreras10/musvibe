@@ -1,5 +1,6 @@
 import { SongDTO } from "@shared/application/DTOs/SongDTO";
 import { SongMinDTO } from "@shared/application/DTOs/SongMinDTO";
+import { validatePagination } from "@shared/application/PaginationPropsValidator";
 import { InvalidArgumentError } from "@shared/domain/Errors/InvalidArgumentError";
 import PaginationProps from "@shared/domain/PaginationProps";
 import { SongId } from "@shared/domain/SongId";
@@ -22,6 +23,7 @@ export default class SongInteractor {
     }
 
     async getSomeSongs(ids: string[]): Promise<SongMinDTO[]> {
+        
         if (ids.length === 0) return [];
         const songs: Song[] = await this.songRepository.getSome(ids);
         return songs.map(song => {
@@ -30,12 +32,7 @@ export default class SongInteractor {
     }
 
     async getAllSongs(page?: number, pageSize?: number): Promise<SongDTO[]> {
-        let paginationProps: PaginationProps | undefined = undefined;
-        if( page && pageSize ) {
-            if (page < 0) throw new InvalidArgumentError('Invalid page!');
-            if (pageSize < 0) throw new InvalidArgumentError('Invalid page size!');
-            paginationProps = {page, pageSize};
-        }
+        const paginationProps: PaginationProps | undefined = validatePagination(page, pageSize);
         const songs: Song[] = await this.songRepository.getAll(paginationProps);
         return songs.map(song => {
             return song.toPrimitives();

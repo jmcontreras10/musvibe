@@ -26,6 +26,7 @@ export default class SongMongoRepository implements SongRepository {
     }
 
     async getSome(ids: string[]): Promise<Song[]>{
+        
         const fetchedSongs = await SongSchema.find({ id: { $in: ids } });
 
         const songs: Song[] = fetchedSongs.map( (song: ISong) => {

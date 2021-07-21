@@ -2,20 +2,19 @@ import { Router } from 'express';
 
 import { getPlaylist, getAllPlaylistsofUser, createPlaylist, updatePlaylist, deletePlaylist, deleteAllPlaylists } from '@playlist/infrastructure/PlaylistApiRESTController';
 import { getAllPlaylistSongs, addPlaylistSong, deletePlaylistSong } from '@playlist/infrastructure/PlaylistSongApiRESTController'
-import { Authenticator } from './AuthMiddleware';
 
 const router: Router = Router();
 
-//  Routes definition
-router.get('/:id', Authenticator, getPlaylist);
-router.get('/', Authenticator, getAllPlaylistsofUser);
-router.post('/', Authenticator, createPlaylist);
-router.put('/:id', Authenticator, updatePlaylist);
-router.delete('/:id', Authenticator, deletePlaylist);
-router.delete('/', Authenticator, deleteAllPlaylists);
+// Routes definition
+router.get('/:id', getPlaylist);
+router.get('/', getAllPlaylistsofUser);
+router.post('/', createPlaylist);
+router.put('/:id', updatePlaylist);
+router.delete('/:id', deletePlaylist);
+router.delete('/', deleteAllPlaylists);
 
-router.get('/:playlist_id/songs', Authenticator, getAllPlaylistSongs);
-router.post('/:playlist_id/songs/:song_id', Authenticator, addPlaylistSong);
-router.delete('/:playlist_id/songs/:song_id', Authenticator, deletePlaylistSong);
+router.get('/:playlist_id/songs', getAllPlaylistSongs);
+router.post('/:playlist_id/songs/:song_id', addPlaylistSong);
+router.delete('/:playlist_id/songs/:song_id', deletePlaylistSong);
 
 export default router;

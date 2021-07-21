@@ -1,16 +1,14 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 import PlaylistSongInteractor from "@playlist/application/PlaylistSongInteractor";
-import { NotAuthorizedError } from '@shared/domain/Errors/NotAuthorizedError';
-import { NotFoundError } from '@shared/domain/Errors/NotFoundError';
 
-import SongIntrnalApiRepository from '@playlist/infrastructure/SongInternalApiRepository';
+import SongIntrnalApiRepository from '@shared/infrastructure/SongInternalApiRepository';
 import PlaylistMongoRepository from "@playlist/infrastructure/PlaylistMongoRepository";
 import { SongMinDTO } from '@shared/application/DTOs/SongMinDTO';
 
 
 
-export const getAllPlaylistSongs = async (req: Request, res: Response) => {
+export const getAllPlaylistSongs = async (req: Request, res: Response, next: NextFunction) => {
 
     const playlistSongInteractor = new PlaylistSongInteractor( new PlaylistMongoRepository(), new SongIntrnalApiRepository());
     const userId = req.user.id;
@@ -22,20 +20,13 @@ export const getAllPlaylistSongs = async (req: Request, res: Response) => {
         const playlist: SongMinDTO[] = await playlistSongInteractor.getAllPlaylistSongs(userId, playlistId, page, pageSize);
         res.status(200).json(playlist);
     } catch(err) {
-        if(err instanceof NotAuthorizedError) {
-            res.status(401).json(err.message);
-        }
-        else if(err instanceof NotFoundError) {
-            res.status(404).json(err.message);
-        } else {
-            res.status(400).json(err.message);
-        }
+        return next(err);
     }
 
 }
 
 
-export const addPlaylistSong = async (req: Request, res: Response) => {
+export const addPlaylistSong = async (req: Request, res: Response, next: NextFunction) => {
 
     const playlistSongInteractor = new PlaylistSongInteractor( new PlaylistMongoRepository(), new SongIntrnalApiRepository());
     const userId = req.user.id;
@@ -46,20 +37,13 @@ export const addPlaylistSong = async (req: Request, res: Response) => {
         await playlistSongInteractor.addPlaylistSong(userId, playlistId, songId);
         res.status(200).json('Song added to your list!');
     } catch(err) {
-        if(err instanceof NotAuthorizedError) {
-            res.status(401).json(err.message);
-        }
-        else if(err instanceof NotFoundError) {
-            res.status(404).json(err.message);
-        } else {
-            res.status(400).json(err.message);
-        }
+        return next(err);
     }
 
 }
 
 
-export const deletePlaylistSong = async (req: Request, res: Response) => {
+export const deletePlaylistSong = async (req: Request, res: Response, next: NextFunction) => {
 
     const playlistSongInteractor = new PlaylistSongInteractor( new PlaylistMongoRepository(), new SongIntrnalApiRepository());
     const userId = req.user.id;
@@ -70,14 +54,7 @@ export const deletePlaylistSong = async (req: Request, res: Response) => {
         await playlistSongInteractor.deletePlaylistSong(userId, playlistId, songId);
         res.status(200).json('Song removed from your list!');
     } catch(err) {
-        if(err instanceof NotAuthorizedError) {
-            res.status(401).json(err.message);
-        }
-        else if(err instanceof NotFoundError) {
-            res.status(404).json(err.message);
-        } else {
-            res.status(400).json(err.message);
-        }
+        return next(err);
     }
 
 }

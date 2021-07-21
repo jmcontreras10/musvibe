@@ -1,4 +1,4 @@
-import SongApiRepository from "@playlist/domain/SongApiRepository";
+import SongApiRepository from "@shared/domain/SongApiRepository";
 import { SongDTO } from "@shared/application/DTOs/SongDTO";
 import { SongMinDTO } from "@shared/application/DTOs/SongMinDTO";
 import { getSomeSongs, getSong } from "@song/infrastructure/SongInternalApiController";

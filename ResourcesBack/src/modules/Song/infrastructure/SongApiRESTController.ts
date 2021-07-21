@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import SongInteractor from '@song/application/SongInteractor';
 import SongMongoRepository from '@song/infrastructure/SongMongoRepository';
+
 import { SongDTO } from '@shared/application/DTOs/SongDTO';
 
 
@@ -24,7 +25,7 @@ export const getSongs = async (req: Request, res: Response) => {
 
     const songInteractor = new SongInteractor( new SongMongoRepository());
     const page = Number(req.query.page); 
-    const pageSize= Number(req.query.pagesize);
+    const pageSize= Number(req.query.pageSize);
 
     try {
         const songs: SongDTO[] = await songInteractor.getAllSongs(page, pageSize);
