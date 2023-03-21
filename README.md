@@ -1,15 +1,15 @@
 # musvibe
-This is a proof of concept test for a music listing app called musvibe
+This is a proof of concept test for a music listing backend app called musvibe. Created time ago in July of 2021 as a technical test with specific requirements: Simple CRUD with 5 entities to measure architecture and typescript knowledge. No external services like Auth0 or firebase were allowed, but could be good to symplify the AuthModule moving it to the Front-End app.
 
 # Requirements
 
-To run this project you'll need to have installed on your pc:<br>
+To run this project you'll need to have on your computer:<br>
 <ul>
     <li>NodeJs</li>
     <li>Docker</li>
     <li>docker-compose</li>
 </ul>
-Witht the previous elements ready you'll be able to run the project modules on this way:<br>
+Witht the elements above you'll be able to run the project modules on this way:<br>
 <ol>
     <li>Go to both AuthService and ResourcesBack and run <code class="terminal">docker-compose up -d</code>, this will activate the database service to allow you store data. And run <code class="terminal">npm install</code> to install the required dependencies in both modules.</li>
     <li>Go to both AuthService and start the app using <code class="terminal">npm run dev</code></li>
@@ -46,8 +46,8 @@ After the idea of the app I defined 4 entities:<br>
     <li>Elegant maintainability</li>
 </ol>
 
-For a better understanding you can watch <a href="https://github.com/jmcontreras10/musvibe/blob/main/arch.png?raw=true">this</a> diagram.<br>
-Finally for the database, I decided to use a <code  class="tomato">PostgressSQL</code> Database for the Auth service, given the structure of the information, and <code  class="tomato">MongoDB</code> for the resources back given the amount of data and low transactionality that we have there. In this case, I'm using <code  class="tomato">Docker</code> to easy deploy the resources.<br><br>
+For a better understanding you can see <a href="https://github.com/jmcontreras10/musvibe/blob/main/arch.png?raw=true">this</a> diagram.<br>
+Finally for the database, I decided to use a <code  class="tomato">Postgres</code> Database for the Auth service, given the structure of the information, and <code  class="tomato">MongoDB</code> for the resources back given the amount of data and low transactionality that we have there. In this case, I'm using <code  class="tomato">Docker</code> to easy deploy the resources.<br><br>
 
 ## **Endpoints**
 With the endpoints created that you could find in the postman files (Auth and services), you will be able to:<br/>
@@ -131,8 +131,5 @@ End of this module: (8:00 AM of 07/21/2021 (COT))<br>
 Start of this module: (9:00 AM of 07/21/2021 (COT))<br>
 End of this module: (3:30 PM of 07/21/2021 (COT))<br>
 ## Docs
-<ol>
-    <li>Initialized Typescript for node server</li>
-</ol>
 Start of this module: (8:10 AM of 07/21/2021 (COT))<br>
 End of this module: (3:43 AM of 07/21/2021 (COT))<br>
