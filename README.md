@@ -93,11 +93,15 @@ The get listing methods allows pagination using the follow query params (?key=va
 Soon, I'll be publishing a complete Swagger API Documentation for tis API.<br/>
 The implementationf of this backend was though with clean code principle in mind, does it means you will not find commentaries but very good names that ilustrate the why of: the variables, functions, interfaces nd other elements
 
-## **Suggestions and Ideas for the system**
+## **Future Improvements**
 <ol>
-    <li>Use a MQTT service to asyncronous comunicate the system in some operations like delete a resource.</li>
+    <li>Implement Unit Tests.</li>
+    <li>Use a MQTT service to asyncronous comunicate the system.</li>
     <li>Use a Redis DB as caché for the user accounts on the Backend side to improve the response time and decrease the requests to the AuthServer.</li>
-    <li>Use a MQTT service to asyncronous comunicate the system in some operations like delete a resource</li>
+    <li>Use Firebase or Auth0 provider for Authentication.</li>
+    <li>Create a CI/CD pipeline.</li>
+    <li>Migrate the app to a odern Framework like NestJs, getting advantage of the Framework's dependency injection and features.</li>
+    <li>Create a web app using NextJs for SSR features and a mobile app using modern Flutter tech.</li>
 </ol>
 
 # Backlog
