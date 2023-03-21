@@ -26,7 +26,7 @@ In each project you'll find a collection.json: <code>auth_collection.json</code>
 
 ## **On the scope**
 
-After the idea of the app I defined 4 entities:<br>
+After the idea of the app I defined 5 entities:<br>
 <ul>
     <li>Auth</li>
     <li>User</li>
@@ -35,8 +35,8 @@ After the idea of the app I defined 4 entities:<br>
     <li>Feed</li>
 </ul>
 <br/>
-    Auth microservice: Manages <code class="tomato">User</code> accounts and the <code  class="tomato">Auth</code> token management (using JWT). Given the low complexity of this, I decided to use a simple MVC.
-    Resources back: Manages the <code  class="tomato">Playlists</code>, <code  class="tomato">Songs</code>, and  <code  class="tomato">Feed</code> API going through for the auth service if needed. Given the possible scalability needs of this, I decided to use DDD based clean Architecture: Hexagal Architecture. 
+    <b>Auth microservice:</b> Manages <code class="tomato">User</code> accounts and the <code  class="tomato">Auth</code> token management (using JWT). Given the low complexity of this, I decided to use a simple MVC.<br/>
+    <b>Resources back:</b> Manages the <code  class="tomato">Playlists</code>, <code  class="tomato">Songs</code>, and  <code  class="tomato">Feed</code> API going through for the auth service if needed. Given the possible scalability needs of this, I decided to use DDD based clean Architecture: Hexagal Architecture. 
 
 ### Some advantages of using monorepo
 <ol>
@@ -46,7 +46,7 @@ After the idea of the app I defined 4 entities:<br>
     <li>Elegant maintainability</li>
 </ol>
 
-For a better understanding you can see <a href="https://github.com/jmcontreras10/musvibe/blob/main/arch.png?raw=true">this</a> diagram.<br>
+For a better understanding you can see at <a href="https://github.com/jmcontreras10/musvibe/blob/main/arch.png?raw=true">this</a> diagram.<br>
 Finally for the database, I decided to use a <code  class="tomato">Postgres</code> Database for the Auth service, given the structure of the information, and <code  class="tomato">MongoDB</code> for the resources back given the amount of data and low transactionality that we have there. In this case, I'm using <code  class="tomato">Docker</code> to easy deploy the resources.<br><br>
 
 ## **Endpoints**
